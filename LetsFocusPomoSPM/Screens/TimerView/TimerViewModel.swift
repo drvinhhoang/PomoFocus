@@ -29,10 +29,9 @@ class TimerViewModel: ObservableObject {
     // Store setting data to AppStorage variable
     func saveChanges() {
         let uid = Auth.auth().currentUser?.uid
-        print(uid)
+     
         let data = try? JSONEncoder().encode(timerModel)
         timerLocalSetting = data
-        // alertItem = AlertContext.saveSuccessful
         guard let uid = uid else {return}
         do {
             try db.collection("setting").document(uid).setData(from: timerModel, merge: true) { error in
