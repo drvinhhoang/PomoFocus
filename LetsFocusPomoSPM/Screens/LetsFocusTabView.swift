@@ -16,10 +16,7 @@ struct LetsFocusTabView: View {
                 .tabItem {
                     Image(systemName: "timer")
                 }
-//            SettingView()
-//                .tabItem {
-//                    Image(systemName: "gearshape")
-//                }
+
             AccountView()
                 .tabItem {
                     Image(systemName: "person")
@@ -28,6 +25,7 @@ struct LetsFocusTabView: View {
         .accentColor(Color(.systemPurple))
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

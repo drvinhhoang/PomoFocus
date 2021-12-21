@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TimerView: View {
     
-    @EnvironmentObject var timerViewmodel: TimerViewModel
+    @EnvironmentObject var timerManager: TimerManager
     @State var isShowingSettingView = false
     
     var body: some View {
@@ -21,44 +21,44 @@ struct TimerView: View {
                     Text("Let's Foccus")
                         .fontWeight(.bold)
                         .padding(.bottom, 10)
-                    Text("\(timerViewmodel.section)/\(timerViewmodel.timerModel.totalSections)")
+                    Text("\(timerManager.section)/\(timerManager.timerModel.totalSections)")
                         .font(.title)
                         .fontWeight(.medium)
                 }
                 .foregroundColor(Color("BrandPrimary"))
                 .padding(.bottom, 40)
                 
-                if timerViewmodel.isRunning || (!timerViewmodel.isRunning && timerViewmodel.isBreakTime) || (!timerViewmodel.isRunning && timerViewmodel.timerModel.seconds < timerViewmodel.timerModel.seconds) {
+                if timerManager.isRunning || (!timerManager.isRunning && timerManager.isBreakTime) || (!timerManager.isRunning && timerManager.seconds < timerManager.seconds) {
 //                     Explain code above:
 //                     Only display XDismissButton when:
 //                     - timer is running
 //                     - Timer is not running but in breaktime
 //                     - Timer is stopped in focus mode (current seconds < total seconds, total seconds is tempTimerModel's seconds)
                     
-                    TimerCicle(second: timerViewmodel.timerModel.seconds, primaryColor: timerViewmodel.setTimerColor().primary, secondaryColor: timerViewmodel.setTimerColor().secondary)
+                    TimerCicle(second: timerManager.seconds, primaryColor: timerManager.setTimerColor().primary, secondaryColor: timerManager.setTimerColor().secondary)
                         .overlay(Button {
-                            timerViewmodel.setTimeWhenXDismissPressed()
-                            timerViewmodel.stopTimer()
+                            timerManager.setTimeWhenXDismissPressed()
+                            timerManager.stopTimer()
                             print("Dismiss Tapped!")
                         } label: {
                             XDismissButton()
                         }, alignment: .topTrailing)
                 } else {
-                    TimerCicle(second: timerViewmodel.timerModel.seconds, primaryColor: timerViewmodel.setTimerColor().primary, secondaryColor: timerViewmodel.setTimerColor().secondary)
+                    TimerCicle(second: timerManager.seconds, primaryColor: timerManager.setTimerColor().primary, secondaryColor: timerManager.setTimerColor().secondary)
                 }
     
                 Button {
-                    timerViewmodel.startTimer()
+                    timerManager.startTimer()
                 } label: {
-                    StartButton(isRunning: timerViewmodel.isRunning)
+                    StartButton(isRunning: timerManager.isRunning)
                 }
                 .padding(.top, 40)
             }
             .ignoresSafeArea(edges: .all)
             .fullScreenCover(isPresented: $isShowingSettingView, onDismiss: {
-                timerViewmodel.saveChanges()
+                timerManager.saveChanges()
             }, content: {
-                SettingView(timerViewmodel: timerViewmodel, isPresentedSettingView: $isShowingSettingView)
+                SettingView(isPresentedSettingView: $isShowingSettingView)
             })
         }
         .overlay(Button {
@@ -69,18 +69,12 @@ struct TimerView: View {
                 .frame(width: 60, height: 60)
                 .foregroundColor(.black)
                 .padding()
-        }, alignment: .topTrailing)
-        
-     
+        }, alignment: .topTrailing)   
         .onAppear {
             DispatchQueue.global().async {
-                timerViewmodel.retrieveSetting()
+                timerManager.retrieveSetting()
             }
-            
-
         }
-        
-        
     }
 }
 

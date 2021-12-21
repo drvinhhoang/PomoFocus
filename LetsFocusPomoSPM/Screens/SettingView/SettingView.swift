@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {  
-    @ObservedObject var timerViewmodel: TimerViewModel
+    @EnvironmentObject var timerViewmodel: TimerManager
     
     var focusTime = 1...50
     var shortBreak = [5, 10, 15, 20, 25, 30]

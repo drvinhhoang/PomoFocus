@@ -11,76 +11,93 @@ import FirebaseFirestoreSwift
 import FirebaseAuth
 
 
-class TimerViewModel: ObservableObject {
+class TimerManager: ObservableObject {
     
     let db = Firestore.firestore()
     
     @AppStorage("setting") private var timerLocalSetting: Data?
-    @Published var timerModel = TimerModel.defaultTimeModel
+    @Published var timerModel = TimerSetting.defaultSetting {
+        didSet {
+            print(timerModel)
+            setBreakTime()
+        }
+    }
     @Published var isRunning = false
     @Published var section: Int = 0
     @Published var isBreakTime: Bool = false
     @Published var isLongBreak: Bool = false
     @Published var alertItem: AlertItem?
     
- 
+    
+    @Published var seconds = TimerSetting.defaultSetting.focusTime * 60
+    
     private var timer = Timer()
-  
+    
     // Store setting data to AppStorage variable
     func saveChanges() {
         let uid = Auth.auth().currentUser?.uid
-     
-        let data = try? JSONEncoder().encode(timerModel)
-        timerLocalSetting = data
-        guard let uid = uid else {return}
-        do {
-            try db.collection("setting").document(uid).setData(from: timerModel, merge: true) { error in
-                self.alertItem = AlertContext.saveSuccessful
+        
+       
+        print(timerLocalSetting)
+        if let uid = uid {
+            do {
+                try db.collection("setting").document(uid).setData(from: timerModel, merge: true) { error in
+                    self.alertItem = AlertContext.saveSuccessful
+                }
+            } catch let error {
+                print("Error writing setting timer to firestore:\(error)")
             }
-        } catch let error {
-            print("Error writing setting timer to firestore:\(error)")
+        } else {
+            saveSettingToLocal()
         }
     }
-  
+    
+    
+    func saveSettingToLocal() {
+        let data = try? JSONEncoder().encode(timerModel)
+        timerLocalSetting = data
+    }
     func retrieveSetting() {
         let uid = Auth.auth().currentUser?.uid
-        guard let timerLocalSetting = timerLocalSetting else { return }
         
-        let tempSettingLocal = try? JSONDecoder().decode(TimerModel.self, from: timerLocalSetting)
+        
         
         if let uid = uid {
-            let settingDoc = db.collection("setting").document(uid)
-            settingDoc.getDocument { (document, error) in
+            
+            let storeCloudSetting = db.collection("setting").document(uid)
+            
+            storeCloudSetting.getDocument {[weak self] (document, error) in
+                guard let self = self else { return }
+                
                 let result = Result {
-                    try document?.data(as: TimerModel.self)
+                    try document?.data(as: TimerSetting.self)
                 }
                 switch result {
                 case .success(let timerSetting):
                     if let timerSetting = timerSetting {
-                        DispatchQueue.main.async {
-                            self.timerModel = timerSetting
-                        }
-                    } else {
-                        print("Setting not exist")
-                        if let tempSetting = tempSettingLocal  {
-                            DispatchQueue.main.async {
-                                self.timerModel = tempSetting
-                            }
-                        }
+
+                        self.timerModel = timerSetting
+                        
                     }
                 case .failure(let error):
                     print("Loading setting error: \(error)")
-                    
-                    if let tempSetting = tempSettingLocal  {
-                        DispatchQueue.main.async {
-                            self.timerModel = tempSetting
-                        }
-                    }
                 }
+            }
+        } else {
+            self.retrieveLocalStoredSetting()
+
+        }
+    }
+    
+    func retrieveLocalStoredSetting() {
+        if let timerLocalSetting = self.timerLocalSetting  {
+            let tempSettingLocal = try? JSONDecoder().decode(TimerSetting.self, from: timerLocalSetting)
+            DispatchQueue.main.async {
+                self.timerModel = tempSettingLocal ?? TimerSetting.defaultSetting
             }
         }
     }
-  
+    
     
     // Set color for timerView's timer
     func setTimerColor() -> (primary: Color, secondary: Color) {
@@ -91,12 +108,13 @@ class TimerViewModel: ObservableObject {
         }
     }
     
+    
     func startTimer() {
         isRunning.toggle()
         if isRunning {
             timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[self] time in
-                timerModel.seconds -= 1
-                if timerModel.seconds <= 0 {
+                seconds -= 1
+                if seconds <= 0 {
                     time.invalidate()
                     isRunning = false
                     // when senconds to 0, change to breaking time
@@ -112,10 +130,12 @@ class TimerViewModel: ObservableObject {
         }
     }
     
+    
     func stopTimer() {
         timer.invalidate()
         isRunning = false
     }
+    
     
     func setBreakTime() {
         if isBreakTime {
@@ -127,13 +147,13 @@ class TimerViewModel: ObservableObject {
             }
             
             if isLongBreak {
-                timerModel.seconds = timerModel.longBreak * 60
+                seconds = timerModel.longBreak * 60
             } else {
-                timerModel.seconds = timerModel.shortBreak * 60
+                seconds = timerModel.shortBreak * 60
             }
             
         } else {
-            timerModel.seconds = timerModel.focusTime * 60
+            seconds = timerModel.focusTime * 60
         }
     }
     

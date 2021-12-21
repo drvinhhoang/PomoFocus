@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF0ABB95277074D60028FCDA /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0ABB94277074D60028FCDA /* PersistenceManager.swift */; };
 		AF8153CF27284D2300B1340E /* LetsFocusPomoSPMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8153CE27284D2300B1340E /* LetsFocusPomoSPMApp.swift */; };
 		AF8153D627284D2A00B1340E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF8153D527284D2A00B1340E /* Preview Assets.xcassets */; };
 		AF8153EA27284DF100B1340E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8153DE27284DF100B1340E /* AccountView.swift */; };
@@ -18,14 +19,14 @@
 		AF8153F027284DF100B1340E /* LetsFocusTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8153E427284DF100B1340E /* LetsFocusTabView.swift */; };
 		AF8153F127284DF100B1340E /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8153E627284DF100B1340E /* SettingView.swift */; };
 		AF8153F227284DF100B1340E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8153E827284DF100B1340E /* TimerView.swift */; };
-		AF8153F327284DF100B1340E /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8153E927284DF100B1340E /* TimerViewModel.swift */; };
+		AF8153F327284DF100B1340E /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8153E927284DF100B1340E /* TimerManager.swift */; };
 		AF8153F627284E0400B1340E /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8153F527284E0400B1340E /* AlertItem.swift */; };
 		AF8153F927284E0E00B1340E /* Ext+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8153F827284E0E00B1340E /* Ext+Color.swift */; };
 		AF81540627284E2600B1340E /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81540227284E2600B1340E /* PrimaryButtonStyle.swift */; };
 		AF81540727284E2600B1340E /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81540327284E2600B1340E /* SecondaryButtonStyle.swift */; };
 		AF81540827284E2600B1340E /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81540427284E2600B1340E /* StartButton.swift */; };
 		AF81540927284E2600B1340E /* XDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81540527284E2600B1340E /* XDismissButton.swift */; };
-		AF81540C27284E3300B1340E /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81540B27284E3300B1340E /* TimerModel.swift */; };
+		AF81540C27284E3300B1340E /* TimerSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF81540B27284E3300B1340E /* TimerSetting.swift */; };
 		AF81540E27284E4500B1340E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF81540D27284E4500B1340E /* Assets.xcassets */; };
 		AF81542D272852B100B1340E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = AF81542C272852B100B1340E /* FirebaseAuth */; };
 		AF81542F272852B100B1340E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = AF81542E272852B100B1340E /* FirebaseFirestore */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF0ABB94277074D60028FCDA /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		AF8153CB27284D2300B1340E /* LetsFocusPomoSPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetsFocusPomoSPM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF8153CE27284D2300B1340E /* LetsFocusPomoSPMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsFocusPomoSPMApp.swift; sourceTree = "<group>"; };
 		AF8153D527284D2A00B1340E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -46,14 +48,14 @@
 		AF8153E427284DF100B1340E /* LetsFocusTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetsFocusTabView.swift; sourceTree = "<group>"; };
 		AF8153E627284DF100B1340E /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		AF8153E827284DF100B1340E /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		AF8153E927284DF100B1340E /* TimerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		AF8153E927284DF100B1340E /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		AF8153F527284E0400B1340E /* AlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		AF8153F827284E0E00B1340E /* Ext+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ext+Color.swift"; sourceTree = "<group>"; };
 		AF81540227284E2600B1340E /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		AF81540327284E2600B1340E /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		AF81540427284E2600B1340E /* StartButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
 		AF81540527284E2600B1340E /* XDismissButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XDismissButton.swift; sourceTree = "<group>"; };
-		AF81540B27284E3300B1340E /* TimerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
+		AF81540B27284E3300B1340E /* TimerSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerSetting.swift; sourceTree = "<group>"; };
 		AF81540D27284E4500B1340E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF815432272857CE00B1340E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF0ABB93277074D60028FCDA /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				AF0ABB94277074D60028FCDA /* PersistenceManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		AF8153C227284D2300B1340E = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				AF8153CE27284D2300B1340E /* LetsFocusPomoSPMApp.swift */,
+				AF0ABB93277074D60028FCDA /* Manager */,
 				AF8153DC27284DF100B1340E /* Screens */,
 				AF81540027284E2600B1340E /* Views */,
 				AF81540A27284E3300B1340E /* Models */,
@@ -148,7 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				AF8153E827284DF100B1340E /* TimerView.swift */,
-				AF8153E927284DF100B1340E /* TimerViewModel.swift */,
+				AF8153E927284DF100B1340E /* TimerManager.swift */,
 			);
 			path = TimerView;
 			sourceTree = "<group>";
@@ -191,7 +202,7 @@
 		AF81540A27284E3300B1340E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AF81540B27284E3300B1340E /* TimerModel.swift */,
+				AF81540B27284E3300B1340E /* TimerSetting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -280,7 +291,7 @@
 				AF8153F127284DF100B1340E /* SettingView.swift in Sources */,
 				AF8153F927284E0E00B1340E /* Ext+Color.swift in Sources */,
 				AF8153F027284DF100B1340E /* LetsFocusTabView.swift in Sources */,
-				AF8153F327284DF100B1340E /* TimerViewModel.swift in Sources */,
+				AF8153F327284DF100B1340E /* TimerManager.swift in Sources */,
 				AF8153EB27284DF100B1340E /* AccountViewModel.swift in Sources */,
 				AF81540727284E2600B1340E /* SecondaryButtonStyle.swift in Sources */,
 				AF8153EF27284DF100B1340E /* RegisterViewModel.swift in Sources */,
@@ -290,7 +301,8 @@
 				AF8153ED27284DF100B1340E /* ProfileView.swift in Sources */,
 				AF8153F627284E0400B1340E /* AlertItem.swift in Sources */,
 				AF8153CF27284D2300B1340E /* LetsFocusPomoSPMApp.swift in Sources */,
-				AF81540C27284E3300B1340E /* TimerModel.swift in Sources */,
+				AF81540C27284E3300B1340E /* TimerSetting.swift in Sources */,
+				AF0ABB95277074D60028FCDA /* PersistenceManager.swift in Sources */,
 				AF81540827284E2600B1340E /* StartButton.swift in Sources */,
 				AF81540927284E2600B1340E /* XDismissButton.swift in Sources */,
 			);

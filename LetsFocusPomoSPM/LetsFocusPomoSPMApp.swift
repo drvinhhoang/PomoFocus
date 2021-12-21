@@ -16,7 +16,7 @@ struct LetsFocusPomoSPMApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            LetsFocusTabView().environmentObject(TimerViewModel())
+            LetsFocusTabView().environmentObject(TimerManager())
         }
     }
 }
